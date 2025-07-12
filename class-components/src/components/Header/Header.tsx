@@ -1,11 +1,30 @@
 import Search from '../Search/Search';
 
-function Header(): React.ReactElement {
+interface HeaderProps {
+  searchQuery: string;
+  onSearchChange: (query: string) => void;
+  onSearchSubmit: () => void;
+}
+
+function Header({
+  searchQuery,
+  onSearchChange,
+  onSearchSubmit,
+}: HeaderProps): React.ReactElement {
   return (
     <div className="header">
-      <button>Error</button>
-      <Search />
-      <button>Search</button>
+      <Search
+        searchQuery={searchQuery}
+        onSearchChange={onSearchChange}
+        onSearchSubmit={onSearchSubmit}
+      />
+      <button
+        type="button"
+        onClick={() => onSearchSubmit()}
+        className="search-button"
+      >
+        Search
+      </button>
     </div>
   );
 }
